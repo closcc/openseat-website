@@ -48,7 +48,7 @@ openseat-website/
 ### Local Development
 ```bash
 # Navigate to the website directory
-cd /Users/clem/Developer/openseat-website
+cd /Users/clem/Developer/Projects/openseat-website
 
 # Start local server (Python)
 python3 -m http.server 8000
