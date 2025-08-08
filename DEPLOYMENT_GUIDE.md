@@ -59,7 +59,7 @@ This guide provides step-by-step instructions for deploying the OpenSeat website
 2. **Deploy**
    ```bash
    # Navigate to your website directory
-   cd openseat-website
+   cd /Users/clem/Developer/Projects/openseat-website
    
    # Deploy to Vercel
    vercel
@@ -127,6 +127,9 @@ Update the social media links when accounts are created:
 
 ### Local Testing
 ```bash
+# Navigate to the website directory
+cd /Users/clem/Developer/Projects/openseat-website
+
 # Using Python (if installed)
 python -m http.server 8000
 
