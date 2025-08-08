@@ -213,20 +213,8 @@
             position: relative;
         }
 
-        /* Add forest silhouette overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 200px;
-            background: 
-                polygon(0% 100%, 5% 80%, 12% 85%, 18% 70%, 25% 85%, 32% 60%, 40% 75%, 48% 50%, 55% 70%, 65% 45%, 72% 65%, 80% 40%, 88% 60%, 95% 35%, 100% 55%, 100% 100%);
-            background-color: var(--forest-green);
-            z-index: -1;
-            opacity: 0.6;
-        }
+        /* Remove old single silhouette in favor of multi-layer parallax */
+        body::before { content: none; }
 
         /* Header */
         .header {
@@ -242,6 +230,33 @@
             position: relative;
             overflow: hidden;
         }
+
+        /* Pacific Northwest parallax background */
+        .pnw-parallax {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .pnw-layer {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            will-change: transform;
+        }
+        .pnw-mist {
+            opacity: 0.35;
+            filter: blur(2px);
+        }
+        .pnw-mountain-back { height: 48vh; z-index: 1; }
+        .pnw-mountain-mid  { height: 40vh; z-index: 2; }
+        .pnw-treeline-back  { height: 32vh; z-index: 3; }
+        .pnw-treeline-front { height: 26vh; z-index: 4; }
+        .pnw-foreground      { height: 18vh; z-index: 5; }
+
+        .header > * { position: relative; z-index: 10; }
 
         /* Navigation */
         .nav-bar {
@@ -971,6 +986,61 @@
 
         <!-- Hero Section -->
         <header class="header" id="home">
+            <!-- PNW parallax background -->
+            <div class="pnw-parallax" aria-hidden="true">
+                <!-- distant misty mountains -->
+                <svg class="pnw-layer pnw-mountain-back pnw-mist" viewBox="0 0 1440 400" preserveAspectRatio="none">
+                    <path d="M0,300 L200,180 L360,240 L520,140 L700,220 L860,160 L1040,220 L1200,140 L1440,240 L1440,400 L0,400 Z" fill="#8FAFC7" stroke="var(--outline-color)" stroke-width="3"/>
+                </svg>
+                <!-- mid mountains -->
+                <svg class="pnw-layer pnw-mountain-mid" viewBox="0 0 1440 400" preserveAspectRatio="none">
+                    <path d="M0,320 L180,220 L300,260 L460,200 L620,260 L780,200 L940,260 L1120,180 L1260,230 L1440,280 L1440,400 L0,400 Z" fill="#6E9BB5" stroke="var(--outline-color)" stroke-width="3"/>
+                </svg>
+                <!-- back treeline -->
+                <svg class="pnw-layer pnw-treeline-back" viewBox="0 0 1440 300" preserveAspectRatio="none">
+                    <g fill="#447A57" stroke="var(--outline-color)" stroke-width="3">
+                        <path d="M50,260 l30,-70 l30,70 z"/>
+                        <path d="M140,260 l25,-60 l25,60 z"/>
+                        <path d="M230,260 l28,-65 l28,65 z"/>
+                        <path d="M320,260 l22,-55 l22,55 z"/>
+                        <path d="M410,260 l30,-70 l30,70 z"/>
+                        <path d="M500,260 l26,-62 l26,62 z"/>
+                        <path d="M590,260 l28,-66 l28,66 z"/>
+                        <path d="M680,260 l24,-58 l24,58 z"/>
+                        <path d="M770,260 l30,-70 l30,70 z"/>
+                        <path d="M860,260 l26,-62 l26,62 z"/>
+                        <path d="M950,260 l28,-66 l28,66 z"/>
+                        <path d="M1040,260 l24,-58 l24,58 z"/>
+                        <path d="M1130,260 l30,-70 l30,70 z"/>
+                        <path d="M1220,260 l26,-62 l26,62 z"/>
+                        <path d="M1310,260 l28,-66 l28,66 z"/>
+                    </g>
+                    <rect y="260" width="1440" height="40" fill="#3B6A4C"/>
+                </svg>
+                <!-- front treeline -->
+                <svg class="pnw-layer pnw-treeline-front" viewBox="0 0 1440 260" preserveAspectRatio="none">
+                    <g fill="#2F5233" stroke="var(--outline-color)" stroke-width="3">
+                        <path d="M30,220 l36,-85 l36,85 z"/>
+                        <path d="M140,220 l32,-78 l32,78 z"/>
+                        <path d="M250,220 l36,-85 l36,85 z"/>
+                        <path d="M360,220 l32,-78 l32,78 z"/>
+                        <path d="M470,220 l36,-85 l36,85 z"/>
+                        <path d="M580,220 l32,-78 l32,78 z"/>
+                        <path d="M690,220 l36,-85 l36,85 z"/>
+                        <path d="M800,220 l32,-78 l32,78 z"/>
+                        <path d="M910,220 l36,-85 l36,85 z"/>
+                        <path d="M1020,220 l32,-78 l32,78 z"/>
+                        <path d="M1130,220 l36,-85 l36,85 z"/>
+                        <path d="M1240,220 l32,-78 l32,78 z"/>
+                        <path d="M1350,220 l36,-85 l36,85 z"/>
+                    </g>
+                    <rect y="220" width="1440" height="40" fill="#2D4A30"/>
+                </svg>
+                <!-- foreground grass shelf -->
+                <svg class="pnw-layer pnw-foreground" viewBox="0 0 1440 180" preserveAspectRatio="none">
+                    <path d="M0,120 C240,160 480,140 720,160 C980,182 1160,150 1440,170 L1440,180 L0,180 Z" fill="#235338" stroke="var(--outline-color)" stroke-width="3"/>
+                </svg>
+            </div>
             <!-- Cartoon dots -->
             <div class="cartoon-dots"></div>
             <div class="cartoon-dots"></div>
