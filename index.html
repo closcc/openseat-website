@@ -40,7 +40,28 @@
 	gtag('config', 'G-2QJWC38ZC8');
 </script>
 
-<link href="pudgy_files/main.css" rel="stylesheet" type="text/css"><script type="text/javascript" src="https://t.pudgypenguins.com/v1/lst/universal-script?ph=afee9d7384ff578e25f9153792e0c2b259916f5f66fa68f9d099a61061b17869&amp;tag=!clicked&amp;embed=true&amp;ref_url=https://pudgypenguins.com/"></script><style data-styled="active" data-styled-version="5.3.3"></style></head>
+<link href="pudgy_files/main.css" rel="stylesheet" type="text/css"><script type="text/javascript" src="https://t.pudgypenguins.com/v1/lst/universal-script?ph=afee9d7384ff578e25f9153792e0c2b259916f5f66fa68f9d099a61061b17869&amp;tag=!clicked&amp;embed=true&amp;ref_url=https://pudgypenguins.com/"></script><style data-styled="active" data-styled-version="5.3.3"></style>
+
+<!-- Temporary local background to replace blob: assets that don't load off-domain -->
+<style id="local-arctic-bg">
+  /* Remove original hero gradient so our sky shows */
+  .hero .inner { background: transparent !important; }
+  .hero { position: relative; }
+  .clone-arctic { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+  .clone-arctic .sky { position: absolute; inset: 0; background: linear-gradient(#68b8e5 0%, #2b90cc 55%, #e7f4fb 85%, #f5fdff 100%); }
+  .clone-arctic .mountain-back, .clone-arctic .mountain-front { position: absolute; bottom: 12%; width: 140%; left: -20%; height: 45%; background: #7fc0e6; border: 3px solid #083b5d; border-bottom: none; clip-path: polygon(0% 100%, 18% 58%, 28% 70%, 40% 48%, 55% 72%, 70% 50%, 82% 68%, 100% 40%, 100% 100%); box-shadow: 0 6px 0 rgba(0,0,0,0.15) inset; }
+  .clone-arctic .mountain-front { bottom: 6%; background: #a6d6f0; clip-path: polygon(0% 100%, 10% 62%, 22% 70%, 35% 46%, 50% 68%, 63% 48%, 76% 64%, 92% 44%, 100% 56%, 100% 100%); }
+  .clone-arctic .snow-shelf-back, .clone-arctic .snow-shelf-front { position: absolute; left: -10%; width: 120%; border: 3px solid #083b5d; border-top: none; border-bottom-left-radius: 60% 40%; border-bottom-right-radius: 60% 40%; background: #ffffff; box-shadow: 0 10px 0 rgba(0,0,0,0.15); }
+  .clone-arctic .snow-shelf-back { height: 18%; bottom: 0; opacity: 0.95; }
+  .clone-arctic .snow-shelf-front { height: 12%; bottom: -1%; }
+  .clone-arctic .snow { position: absolute; inset: 0; background-image: radial-gradient(#ffffff 1.2px, rgba(255,255,255,0) 1.2px); background-size: 18px 18px; opacity: 0.5; animation: snowfall 18s linear infinite; }
+  @keyframes snowfall { to { transform: translateY(18px); } }
+  /* Ensure content (title/buttons) sits above */
+  .hero .c-208.inner, .hero h1, .hero p, #header { position: relative; z-index: 2; }
+  /* Hide saved blob background image that cannot resolve locally */
+  .hero img.bg { display: none !important; }
+</style>
+</head>
 <body style="--vh: 10.03px; --vhu: 10.03px; --vhCSS: 10.026666870117188px;">
 			
 	<div id="global-loader" style="translate: none; rotate: none; scale: none; transform: translate3d(0px, 0px, 0px); opacity: 0; visibility: hidden;">
@@ -458,6 +479,15 @@ Close</span>
 </div>
 
 <section class="hero">
+  <!-- Local arctic background (mountains + snow) -->
+  <div class="clone-arctic" aria-hidden="true">
+    <div class="sky"></div>
+    <div class="mountain-back"></div>
+    <div class="mountain-front"></div>
+    <div class="snow-shelf-back"></div>
+    <div class="snow-shelf-front"></div>
+    <div class="snow"></div>
+  </div>
 	<img class="bg" src="blob:https://pudgypenguins.com/28a4010f-8687-46de-abd0-fe089d174113">
 	<div class="c-208 inner">
 		<h1 class="lottie-enter" data-json-desktop="thehuddle" data-json-mobile="thehuddle">
